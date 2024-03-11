@@ -1,0 +1,21 @@
+<p>Heroes list</p>
+
+<h3 *ngIf="removedHero; else nothingHasBeenRemoved">Removed hero:<small class="text-danger">{{removedHero}}</small></h3>
+<!-- ng-template is not going to be displayed, because it is waiting for me to give it
+instructions on when and how it will be be displayed(condition is above) -->
+<!-- the #name is to allow other tags to make reference to the ng-template
+it is known as local reference in Angular -->
+<ng-template #nothingHasBeenRemoved>
+	<h3>Haven't removed any hero yet</h3>
+</ng-template>
+
+
+<button [disabled]="heroNames.length === 0" class="btn btn-outline-danger" (click)="removeLastHero()">
+	Remove last heroe
+</button>
+
+<ul *ngIf="heroNames.length > 0" class="mt-2 list-group">
+	<li *ngFor="let name of heroNames" class="list-group-item">
+		<strong>{{name}}</strong>
+	</li>
+</ul>
