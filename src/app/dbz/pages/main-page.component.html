@@ -3,10 +3,11 @@
 
 <div class="row">
 	<div class="col">
-		<dbz-list></dbz-list>
+		<dbz-list [charactersCollection]="characters" (onRemoveCharacter)="onRemoveCharacter($event)"></dbz-list>
 	</div>
 
 	<div class="col">
-		<dbz-form></dbz-form>
+		<!-- * Receiving the event emitted by the children component the $event is a special syntaxis that angular uses to receive the emitted value -->
+		<dbz-form (onNewCharacter)="onNewCharacter($event)"></dbz-form>
 	</div>
 </div>

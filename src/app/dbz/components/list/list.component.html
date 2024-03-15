@@ -1,6 +1,35 @@
 <h3>
 	{{title}}
 </h3>
-<ul *ngFor="let character of charactersCollection" class="list-group">
-	<li class="list-group-item">{{character.name + " - " + character.power}}</li>
+<!-- index is already being defined when the *ngFor loop is created, so here we are only
+extracting it and using it -->
+<!--
+	[ngClass] directive allow to add classes based in a expression
+-->
+<!--
+	* Note: if you add square brackets to a html attribute then your are telling Angular to take controll over it.
+-->
+<ul *ngFor="let character of charactersCollection;
+	index as i;
+	first as isFirst;
+	last as isLast;
+	even as isEvent;
+	odd as isOdd;
+	count as length;" class="list-group">
+	<li class="list-group-item d-flex justify-content-between" [ngClass]="{
+			'list-group-item-dark': isLast,
+			'list-group-item-primary fw-bold': isFirst,
+		}">
+		<div>
+			<span class="text-primary">{{i + 1}}</span>
+			{{character.name}} - {{character.power}}
+		</div>
+		<button
+			(click)="removeCharacter(i)"
+			class="btn btn-danger"
+			type="button"
+		>
+			x
+		</button>
+	</li>
 </ul>

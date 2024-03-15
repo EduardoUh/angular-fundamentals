@@ -1,9 +1,32 @@
 <h4>{{title}}</h4>
-<form class="d-flex flex-column gap-2">
-	<input type="text" class="form-control" placeholder="Name" required>
-	<input type="number" class="form-control" placeholder="Power" min="1" required>
+<form
+	class="d-flex flex-column gap-2"
+	(ngSubmit)="emitCharacter()"
+>
+	<input
+		[(ngModel)]="newCharacter.name"
+		name="name"
+		type="text"
+		class="form-control"
+		placeholder="Name"
+		required
+	>
+	<input
+		[(ngModel)]="newCharacter.power"
+		name="power"
+		type="number"
+		class="form-control"
+		placeholder="Power"
+		min="1"
+		required
+	>
 
-	<button type="submit" class="btn btn-outline-primary">
+	<button
+		type="submit"
+		class="btn btn-outline-primary"
+	>
 		Add
 	</button>
+
+	<pre>{{newCharacter | json}}</pre>
 </form>

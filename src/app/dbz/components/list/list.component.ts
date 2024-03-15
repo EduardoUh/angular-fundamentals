@@ -1,9 +1,5 @@
-import { Component } from '@angular/core';
-
-interface Character {
-	name: string;
-	power: number;
-}
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Character } from '../../interfaces/character.interface';
 
 @Component({
 	selector: 'dbz-list',
@@ -11,6 +7,16 @@ interface Character {
 	styleUrl: './list.component.css'
 })
 export class ListComponent {
+	// the child emitt something to the father
+	@Output()
+	public onRemoveCharacter: EventEmitter<number> = new EventEmitter();
+
 	public title: string = 'Characters'
-	public charactersCollection: Character[] = [{ name: 'Krillin', power: 500 }, { name: 'Goku', power: 10000 }];
+	// @Input() decorator allow the communication between father component and its children, the children receives something from the father
+	@Input()
+	public charactersCollection: Character[] = [];
+
+	public removeCharacter(id: number): void {
+		this.onRemoveCharacter.emit(id);
+	}
 }
