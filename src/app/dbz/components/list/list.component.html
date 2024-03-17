@@ -25,7 +25,7 @@ extracting it and using it -->
 			{{character.name}} - {{character.power}}
 		</div>
 		<button
-			(click)="removeCharacter(i)"
+			(click)="removeCharacter(character.id!)"
 			class="btn btn-danger"
 			type="button"
 		>
